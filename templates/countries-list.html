@@ -5,10 +5,23 @@
     <title>Список стран</title>
 </head>
 <body>
-    <ol>
-        {% for country in countries %}
-        <li><a href="/{{country}}">{{country}}</a></li>
-        {% endfor %}
-    </ol>
+    <div>
+        <h1>Алфивитный указатель списка стран</h1>
+        <p>Страны начинающиеся с буквы:</p>
+        <div>
+            <ul>
+                {% for letter in countries_alphabetical_list %}
+                <li><a href="countries-that-start-with/{{letter}}">{{letter}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div>
+        <ol>
+            {% for country in countries %}
+            <li><a href="/{{country}}">{{country}}</a></li>
+            {% endfor %}
+        </ol>
+    </div>
 </body>
 </html>

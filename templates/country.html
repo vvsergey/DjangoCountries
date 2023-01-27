@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{country}}</title>
 </head>
 <body>
+<h1>{{country}}</h1>
+<ol>
+    {% for language in  languages%}
+    <li>{{language}}</li>
+    {% endfor %}
+</ol>
+<a href="/countries-list">К списку стран</a>
 
 </body>
 </html>

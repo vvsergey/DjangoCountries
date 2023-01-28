@@ -59,8 +59,7 @@ def countries_that_start(request, letter:str) ->HttpResponse:
 
 
 def language_page(request) ->HttpResponse:
-    print("работает")
-    context = {
-        'language_list': language_list,
-    }
-    return render(request, 'language-page.html', context)
+
+    return  render(request,'language-page .html', context)
+
+

@@ -35,12 +35,14 @@ def countries_list(request) -> HttpResponse:
     return render(request, 'countries-list.html', context)
 
 
-def country_info(request, country: str) -> HttpResponse:
+def country_info(request, country:str) -> HttpResponse:
+    languages = countries[country]
     context = {
         'country': country,
-        'languages': countries[country]
+        'languages': languages
     }
     return render(request, 'country.html', context)
+
 
 def countries_that_start(request, letter:str) ->HttpResponse:
     countries_list = []
@@ -55,7 +57,9 @@ def countries_that_start(request, letter:str) ->HttpResponse:
     }
     return render(request, 'countries-that-start-with.html', context)
 
+
 def language_page(request) ->HttpResponse:
+    print("работает")
     context = {
         'language_list': language_list,
     }

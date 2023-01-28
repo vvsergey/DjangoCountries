@@ -23,5 +23,4 @@ urlpatterns = [
     path('<str:country>', views.country_info),
     path('countries-that-start-with/<str:letter>', views.countries_that_start),
     path('language-page', views.language_page)
-
 ]

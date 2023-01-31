@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{language}}</title>
+</head>
+<body>
+    <div>
+        <h1>Список стран в которых говорят на языке {{language}}</h1>
+        <ol>
+            {% for country  in countries_list%}
+            <li>{{country}}</li>
+            {% endfor %}
+        </ol>
+    </div>
+</body>
+</html>

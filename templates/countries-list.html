@@ -3,13 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Список стран</title>
+    <style>
+    .alphabet-small {margin: 0; padding: 0;}
+    *{box-sizing: border-box;}
+    div { display: block;}
+    .content-inner { min-height: 500px; font-size: 15px; color: #222;}
+    .list-inline { padding-left: 0; margin-left: -5px; list-style: none;}
+    style attribute { --fsAncillary: var(--use); }
+    :after, :before { box-sizing: border-box; }
+    ol, ul {margin-top: 0; }
+    .alphabet-small {list-style: none; margin: 0;padding: 0; }
+    .content-inner {min-height: 500px; font-size: 15px; color: #222; }
+    style attribute {--fsAncillary: var(--use);}
+    .alphabet-small ul li { margin-bottom: 5px; }
+    .list-inline>li { display: inline-block; padding-right: 5px; padding-left: 5px;}
+
+    .pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
 </head>
 <body>
     <div>
         <h1>Алфивитный указатель списка стран</h1>
         <p>Страны начинающиеся с буквы:</p>
-        <div>
-            <ul>
+        <div class="alphabet-small">
+            <ul class="list-inline">
                 {% for letter in countries_alphabetical_list %}
                 <li><a href="countries-that-start-with/{{letter}}">{{letter}}</a></li>
                 {% endfor %}
@@ -22,6 +52,16 @@
             <li><a href="/{{country}}">{{country}}</a></li>
             {% endfor %}
         </ol>
+    </div>
+    <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="#">1</a>
+        <a class="active" href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>
     </div>
 </body>
 </html>

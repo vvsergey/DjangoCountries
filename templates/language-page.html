@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Языки</title>
+</head>
+<body>
+    <div>
+        <h1>
+           Алфивитный указатель списка языков
+        </h1>
+        <ol>
+            {% for language in language_list %}
+            <li><a href="countries-that-speaking/{{language}}">{{language}}</a></li>
+            {% endfor %}
+        </ol>
+    </div>
+</body>
+</html>

@@ -16,12 +16,15 @@ with open(file_path, 'r') as in_file:
                 countries_alphabetical_list.append(letter)
             countries[country] = []
         if len(ln) > 2 and ln.find('languages') == -1 and ln.find('country') == -1:
-            if language_list.count(ln) == 0:
-                language_list.append(ln)
-            countries[country].append(ln.strip('",'))
+            lang = ln.strip('",')
+            if language_list.count(lang) == 0:
+                language_list.append(lang)
+            countries[country].append(lang)
 
 countries_alphabetical_list.sort()
 language_list.sort()
+
+print(len(countries)//10)
 
 def main_page(request) -> HttpResponse:
     return render(request, 'index.html')
@@ -59,7 +62,22 @@ def countries_that_start(request, letter:str) ->HttpResponse:
 
 
 def language_page(request) ->HttpResponse:
+    context = {
+        'language_list': language_list
+    }
+    return render(request, 'language-page.html', context)
 
-    return  render(request,'language-page .html', context)
+
+def countries_that_speaking(request, language:str) ->HttpResponse:
+    countries_list = list()
+    for cntr in countries:
+        if countries[cntr].count(language) > 0:
+            countries_list.append(cntr)
+        countries_list.sort()
+    context = {
+        'language': language,
+        'countries_list': countries_list
+    }
+    return render(request, 'countries-that-speaking.html', context)
 
 

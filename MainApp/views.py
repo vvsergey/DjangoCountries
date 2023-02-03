@@ -6,6 +6,8 @@ file_path = '/home/student/Projects/DjangoCountries/country-by-languages.json'
 countries = {}
 countries_alphabetical_list = []
 language_list = []
+page_in_countries_list = 1
+
 with open(file_path, 'r') as in_file:
     for line in in_file.readlines():
         ln = line.strip()
@@ -24,12 +26,12 @@ with open(file_path, 'r') as in_file:
 countries_alphabetical_list.sort()
 language_list.sort()
 
-
 def main_page(request) -> HttpResponse:
     return render(request, 'index.html')
 
 
 def countries_list(request, page:int) -> HttpResponse:
+    page_in_countries_list = page
     countries_group = dict()
     for index, value in enumerate(countries.keys()):
         if not (index // 10 + 1) in countries_group.keys():
@@ -62,6 +64,7 @@ def countries_that_start(request, letter:str) ->HttpResponse:
             countries_list.append(country)
 
     context = {
+        'page_in_countries_list': page_in_countries_list,
         'letter': letter,
         'countries_list': countries_list
     }

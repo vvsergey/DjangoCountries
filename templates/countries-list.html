@@ -41,7 +41,7 @@
         <div class="alphabet-small">
             <ul class="list-inline">
                 {% for letter in countries_alphabetical_list %}
-                <li><a href="countries-that-start-with/{{letter}}">{{letter}}</a></li>
+                <li><a href="/countries-that-start-with/{{letter}}">{{letter}}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -57,9 +57,9 @@
 
         {% for key in countries_group %}
         {% if key == page %}
-        <a class="active" href="countries-list/{{key}}">{{key}}</a>
+        <a class="active" href="/countries-list/{{key}}">{{key}}</a>
         {% else %}
-        <a href="countries-list/{{key}}">{{key}}</a>
+        <a href="/countries-list/{{key}}">{{key}}</a>
         {% endif %}
         {% endfor %}
 

@@ -54,14 +54,15 @@
         </ol>
     </div>
     <div class="pagination">
-        <a href="#">&laquo;</a>
-        <a href="#">1</a>
-        <a class="active" href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
+
+        {% for key in countries_group %}
+        {% if key == page %}
+        <a class="active" href="countries-list/{{key}}">{{key}}</a>
+        {% else %}
+        <a href="countries-list/{{key}}">{{key}}</a>
+        {% endif %}
+        {% endfor %}
+
     </div>
 </body>
 </html>

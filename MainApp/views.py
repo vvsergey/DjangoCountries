@@ -24,15 +24,22 @@ with open(file_path, 'r') as in_file:
 countries_alphabetical_list.sort()
 language_list.sort()
 
-print(len(countries)//10)
 
 def main_page(request) -> HttpResponse:
     return render(request, 'index.html')
 
 
-def countries_list(request) -> HttpResponse:
+def countries_list(request, page:int) -> HttpResponse:
+    countries_group = dict()
+    for index, value in enumerate(countries.keys()):
+        if not (index // 10 + 1) in countries_group.keys():
+            countries_group[index // 10 + 1] = []
+        countries_group[index // 10 + 1].append(value)
+
     context = {
-        "countries": countries,
+        "page": page,
+        "countries": countries_group[page],
+        "countries_group": countries_group,
         'countries_alphabetical_list': countries_alphabetical_list,
     }
     return render(request, 'countries-list.html', context)
@@ -74,6 +81,7 @@ def countries_that_speaking(request, language:str) ->HttpResponse:
         if countries[cntr].count(language) > 0:
             countries_list.append(cntr)
         countries_list.sort()
+
     context = {
         'language': language,
         'countries_list': countries_list

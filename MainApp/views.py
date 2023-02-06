@@ -1,8 +1,11 @@
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponseNotFound
 from django.core.paginator import Paginator
+from MainApp.models import Countries
+
 
 # Create your views here.
+countries_from_bd = Countries.objects.all()
 file_path = '/home/student/Projects/DjangoCountries/country-by-languages.json'
 countries = {}
 countries_alphabetical_list = []
@@ -25,8 +28,10 @@ with open(file_path, 'r') as in_file:
 
 countries_alphabetical_list.sort()
 language_list.sort()
-pag = Paginator(list(countries.keys()), 10)
-p = pag.get_page(1)
+
+
+
+
 
 def main_page(request) -> HttpResponse:
     return render(request, 'index.html')
@@ -34,6 +39,7 @@ def main_page(request) -> HttpResponse:
 
 def countries_list(request) -> HttpResponse:
     page = request.GET.get('page')
+    pag = Paginator(list(countries.keys()), 10)
     page_obj = pag.get_page(page)
     context = {
         "page": page,

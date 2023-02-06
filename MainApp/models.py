@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
+class Countries(models.Model):
+    country = models.CharField(max_length=50)
+    languages = models.CharField(max_length=500)

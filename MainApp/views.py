@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponseNotFound
+from django.core.paginator import Paginator
 
 # Create your views here.
 file_path = '/home/student/Projects/DjangoCountries/country-by-languages.json'
@@ -24,28 +25,25 @@ with open(file_path, 'r') as in_file:
 
 countries_alphabetical_list.sort()
 language_list.sort()
+pag = Paginator(list(countries.keys()), 10)
+p = pag.get_page(1)
 
 def main_page(request) -> HttpResponse:
     return render(request, 'index.html')
 
 
-def countries_list(request, page:int) -> HttpResponse:
-    countries_group = dict()
-    for index, value in enumerate(countries.keys()):
-        if not (index // 10 + 1) in countries_group.keys():
-            countries_group[index // 10 + 1] = []
-        countries_group[index // 10 + 1].append(value)
-
+def countries_list(request) -> HttpResponse:
+    page = request.GET.get('page')
+    page_obj = pag.get_page(page)
     context = {
         "page": page,
-        "countries": countries_group[page],
-        "countries_group": countries_group,
+        "page_obj": page_obj,
         'countries_alphabetical_list': countries_alphabetical_list,
     }
     return render(request, 'countries-list.html', context)
 
 
-def country_info(request, country:str) -> HttpResponse:
+def country_info(request, country: str) -> HttpResponse:
     languages = countries[country]
     context = {
         'country': country,
@@ -54,7 +52,7 @@ def country_info(request, country:str) -> HttpResponse:
     return render(request, 'country.html', context)
 
 
-def countries_that_start(request, letter:str) ->HttpResponse:
+def countries_that_start(request, letter: str) ->HttpResponse:
     countries_list = []
 
     for country in countries:

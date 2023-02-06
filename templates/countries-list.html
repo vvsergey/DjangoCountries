@@ -48,21 +48,25 @@
     </div>
     <div>
         <ol>
-            {% for country in countries %}
+            {% for country in page_obj %}
             <li><a href="/{{country}}">{{country}}</a></li>
             {% endfor %}
         </ol>
     </div>
     <div class="pagination">
-        <a href="#">&laquo;</a>
-        {% for key in countries_group %}
-        {% if key == page %}
-        <a class="active" href="/countries-list/{{key}}">{{key}}</a>
-        {% else %}
-        <a href="/countries-list/{{key}}">{{key}}</a>
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+        {% endif %}
+        {%  for p in page_obj.paginator.page_range %}
+        {% if page_obj.number == p %}
+        <a class="active"  href="?page={{ p }}">{{ p }}</a>
+        {% elif p >= page_obj.number|add:-4 and p <= page_obj.number|add:4 %}
+        <a href="?page={{ p }}">{{ p }}</a>
         {% endif %}
         {% endfor %}
-
+        {% if page_obj.has_next %}
+         <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+        {% endif %}
     </div>
 </body>
 </html>

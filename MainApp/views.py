@@ -3,34 +3,24 @@ from django.http import HttpResponseNotFound
 from django.core.paginator import Paginator
 from MainApp.models import Countries
 
-
 # Create your views here.
-countries_from_bd = Countries.objects.all()
+
 file_path = '/home/student/Projects/DjangoCountries/country-by-languages.json'
 countries = {}
-countries_alphabetical_list = []
+countries_alphabetical_list = set()
 language_list = []
 
-with open(file_path, 'r') as in_file:
-    for line in in_file.readlines():
-        ln = line.strip()
-        if ln.find('country') > -1:
-            country = ln[12:-2]
-            letter = country[0]
-            if not countries_alphabetical_list.count(letter):
-                countries_alphabetical_list.append(letter)
-            countries[country] = []
-        if len(ln) > 2 and ln.find('languages') == -1 and ln.find('country') == -1:
-            lang = ln.strip('",')
-            if language_list.count(lang) == 0:
-                language_list.append(lang)
-            countries[country].append(lang)
+countries_from_bd = Countries.objects.all()
+for countries_object in countries_from_bd:
+    contrys_name = countries_object.country
+    letter = contrys_name[0]
+    countries_alphabetical_list.add(letter)
+    countries[contrys_name] = []
+    languages = countries_object.languages.split(',')
+    language_list.extend(languages)
+    countries[countries_object.country].extend(languages)
 
-countries_alphabetical_list.sort()
 language_list.sort()
-
-
-
 
 
 def main_page(request) -> HttpResponse:

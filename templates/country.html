@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{country}}</title>
-</head>
-<body>
+{% extends 'countries-that-start-with.html' %}
+{% block title %}
+{{country}}
+{% endblock %}
+{% block content %}
 <h1>{{country}}</h1>
 <ol>
     {% for language in  languages%}
     <li>{{language}}</li>
     {% endfor %}
 </ol>
-<a href="/countries-list">К списку стран</a>
+{% endblock %}
+{% block links_to_country_list %}
+     {{ block.super }}
+{% endblock %}
 
-</body>
-</html>
+
+
+

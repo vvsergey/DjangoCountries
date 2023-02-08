@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
+{% extends 'base.html' %}
+{% block title %}
     <title>Гостинная</title>
-</head>
-<body>
+{% endblock %}
+{% block content %}
 <h1>Приветствую тебя странник!!!</h1>
-<a href="/countries-list">Страны</a></br>
+<a href="/countries-list">Страны</a>
+</br>
 <a href="/language-page">Языки</a>
-</body>
-</html>
+{% endblock %}

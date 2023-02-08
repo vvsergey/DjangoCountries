@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Список стран</title>
-    <style>
-    .alphabet-small {margin: 0; padding: 0;}
+{% extends 'base.html' %}
+{% block style %}
+.alphabet-small {margin: 0; padding: 0;}
     *{box-sizing: border-box;}
     div { display: block;}
     .content-inner { min-height: 500px; color: #222;}
@@ -32,19 +28,23 @@
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
-</style>
-</head>
-<body>
-    <div>
-        <h1>Алфивитный указатель списка стран</h1>
-        <p>Страны начинающиеся с буквы:</p>
-        <div class="alphabet-small">
-            <ul class="list-inline">
-                {% for letter in countries_alphabetical_list %}
-                <li><a href="/countries-that-start-with/{{letter}}">{{letter}}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
+
+{% endblock %}
+
+{% block title %}
+Список стран
+{% endblock %}
+{% block content %}
+<div>
+    <h1>Алфивитный указатель списка стран</h1>
+    <p>Страны начинающиеся с буквы:</p>
+    <div class="alphabet-small">
+        <ul class="list-inline">
+            {% for letter in countries_alphabetical_list %}
+            <li><a href="/countries-that-start-with/{{letter}}">{{letter}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
     </div>
     <div>
         <ol>
@@ -68,5 +68,4 @@
          <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
         {% endif %}
     </div>
-</body>
-</html>
+{% endblock %}

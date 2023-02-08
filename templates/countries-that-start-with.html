@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Страны на {{letter}}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}
+Страны на {{letter}}
+{% endblock %}
+{% block content %}
     <div>
         <h1>Страны имя которых начинается на букву {{letter}}</h1>
         <ol>
@@ -12,7 +10,9 @@
             <li><a href="/{{country}}">{{country}}</a></li>
             {% endfor %}
         </ol>
-        <a href="/countries-list">К списку стран</a>
     </div>
-</body>
-</html>
+{% endblock %}
+{% block links_to_country_list %}
+     <a href="/countries-list">К списку стран</a>
+{% endblock %}
+

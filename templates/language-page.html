@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Языки</title>
-</head>
-<body>
-    <div>
+{% extends 'base.html' %}
+{% block title %}
+Языки
+{% endblock %}
+{% block content %}
         <h1>
            Алфивитный указатель списка языков
         </h1>
@@ -14,6 +11,4 @@
             <li><a href="countries-that-speaking/{{language}}">{{language}}</a></li>
             {% endfor %}
         </ol>
-    </div>
-</body>
-</html>
+{% endblock %}

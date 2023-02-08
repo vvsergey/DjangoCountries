@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <style>
+    {% block style %}
+    {% endblock %}
+    </style>
+    <title>
+    {% block title %}
+    {% endblock %}
+    </title>
+</head>
+<body>
+    <div>
+    {% block content %}
+    {% endblock %}
+    </div>
+    <div>
+        {% block links_to_country_list %}
+        {% endblock %}
+    </div>
+</body>
+</html>

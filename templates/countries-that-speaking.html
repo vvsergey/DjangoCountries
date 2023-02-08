@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{language}}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}
+Языки страны
+{% endblock %}
+{% block content %}
     <div>
         <h1>Список стран в которых говорят на языке {{language}}</h1>
         <ol>
@@ -13,5 +11,4 @@
             {% endfor %}
         </ol>
     </div>
-</body>
-</html>
+{% endblock %}

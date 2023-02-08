@@ -18,11 +18,11 @@ from django.urls import path
 from MainApp import views
 
 urlpatterns = [
-    path('', views.main_page),
-    path('countries-list', views.countries_list),
-    path('language-page', views.language_page),
-    path('countries-that-speaking/<str:language>', views.countries_that_speaking),
-    path('<str:country>', views.country_info),
+    path('', views.main_page, name="home"),
+    path('countries-list', views.countries_list, name="countries-page"),
+    path('language-page', views.language_page, name="language-page"),
+    path('countries-that-speaking/<str:language>', views.countries_that_speaking, name="countries-language-page"),
+    path('<str:country>', views.country_info, name="country-detail"),
     path('countries-that-start-with/<str:letter>', views.countries_that_start, name="countries-starts"),
 
 ]

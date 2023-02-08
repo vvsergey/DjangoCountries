@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}
-    <title>Гостинная</title>
+Гостинная
 {% endblock %}
 {% block content %}
 <h1>Приветствую тебя странник!!!</h1>
-<a href="/countries-list">Страны</a>
+<a href="{% url 'countries-page' %}">Страны</a>
 </br>
-<a href="/language-page">Языки</a>
+<a href="{% url 'language-page' %}">Языки</a>
 {% endblock %}

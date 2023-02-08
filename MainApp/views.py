@@ -5,23 +5,23 @@ from MainApp.models import Countries
 
 # Create your views here.
 
-file_path = '/home/student/Projects/DjangoCountries/country-by-languages.json'
 countries = {}
-countries_alphabetical_list = set()
+countries_alphabetical_list = []
 language_list = []
 
 countries_from_bd = Countries.objects.all()
 for countries_object in countries_from_bd:
     contrys_name = countries_object.country
     letter = contrys_name[0]
-    countries_alphabetical_list.add(letter)
+    if not countries_alphabetical_list.count(letter):
+        countries_alphabetical_list.append(letter)
     countries[contrys_name] = []
     languages = countries_object.languages.split(',')
     language_list.extend(languages)
     countries[countries_object.country].extend(languages)
 
 language_list.sort()
-
+countries_alphabetical_list.sort()
 
 def main_page(request) -> HttpResponse:
     return render(request, 'index.html')
